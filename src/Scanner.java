@@ -65,7 +65,7 @@ public class Scanner {
                     else if(Character.isDigit(c)){
                         estado = 15;
                         lexema += c;
-
+                    
                         /*while(Character.isDigit(c)){
                             lexema += c;
                             i++;
@@ -76,8 +76,12 @@ public class Scanner {
                         estado = 0;
                         tokens.add(t);
                         */
-
-                    }
+                        }
+                    else if(c == '/'){
+                        estado = 26;
+                        lexema +=c;
+                            }
+                    
                     break;
                 case 1:
                     if(c == '='){ //No se manda al estado 2 porque es un terminal
@@ -185,6 +189,61 @@ public class Scanner {
                         i--;
                     }
                     break;
+
+                    case 26:
+                    if(c == '*'){
+                        estado = 27;
+                        lexema += c;
+                    }
+                    else if(c == '/'){
+                        estado = 30;
+                        lexema += c;
+                    }
+                    else{
+                          Token t26 = new Token(TipoToken.SLASH, lexema);
+                          tokens.add(t26);
+                          estado = 0;
+                          lexema = "";
+                          i--;
+                    }                            
+                  break;
+                  
+                case 27: 
+                    if(c == '*'){
+                        estado = 28;
+                        lexema += c;
+                    }
+                    else{
+                        estado = 27;
+                        lexema += c;
+                    }
+                  break;
+                    
+                case 28: 
+                    if(c == '*'){
+                        estado = 28;
+                        lexema +=c;
+                        }
+                    else if(c == '/'){
+                        estado = 0;
+                        lexema = "";
+                    }
+                    else{
+                       estado = 27;
+                       lexema +=c;
+                    }
+                  break;
+                  
+                case 30:
+                    if( c =='\n' ){
+                        estado = 0;
+                        lexema ="";
+                    }
+                    else {
+                        estado = 30;
+                        lexema += c;
+                    }       
+                break;
             }
 
 
