@@ -42,7 +42,23 @@ public class Scanner {
 
             switch (estado){
                 case 0:
-                    if(Character.isLetter(c)){
+                    if(c == '>'){
+                        estado = 1;
+                        lexema += c;
+                    }
+                    else if(c == '<'){
+                        estado = 4;
+                        lexema += c;
+                    }
+                    else if(c == '='){
+                        estado = 7;
+                        lexema += c;
+                    }
+                    else if(c == '!'){
+                        estado = 10;
+                        lexema += c;
+                    }
+                    else if(Character.isLetter(c)){
                         estado = 13;
                         lexema += c;
                     }
@@ -63,7 +79,68 @@ public class Scanner {
 
                     }
                     break;
-
+                case 1:
+                    if(c == '='){ //No se manda al estado 2 porque es un terminal
+                        lexema += c;
+                        Token t2 = new Token(TipoToken.GREATER_EQUAL, lexema);
+                        tokens.add(t2);
+                        estado = 0;
+                        lexema = "";
+                    }
+                    else{ //No se manda al estado 3 porque es un terminal
+                        Token t3 = new Token(TipoToken.GREATER, lexema);
+                        tokens.add(t3);
+                        estado = 0;
+                        lexema = "";
+                        i--;
+                    }
+                    break;
+                case 4:
+                    if(c == '='){ //No se manda al estado 5 porque es un terminal
+                        lexema +=c;
+                        Token t5 = new Token(TipoToken.LESS_EQUAL, lexema);
+                        tokens.add(t5);
+                        estado = 0;
+                        lexema = "";
+                    }
+                    else{ //No se manda al estado 6 porque es un terminal
+                        Token t6 = new Token(TipoToken.LESS, lexema);
+                        tokens.add(t6);
+                        estado = 0;
+                        lexema = "";
+                        i--;
+                    }
+                    break;
+                case 7:
+                    if(c == '='){ //No se manda al estado 8 porque es un terminal
+                        lexema +=c;
+                        Token t8 = new Token(TipoToken.EQUAL_EQUAL, lexema);
+                        tokens.add(t8);
+                        estado = 0;
+                        lexema = "";
+                    }
+                    else{
+                        Token t9 = new Token(TipoToken.EQUAL, lexema);
+                        tokens.add(t9);
+                        estado = 0;
+                        lexema = "";
+                        i--;
+                    }
+                case 10:
+                    if(c == '='){
+                        lexema +=c;
+                        Token t8 = new Token(TipoToken.EQUAL_EQUAL, lexema);
+                        tokens.add(t8);
+                        estado = 0;
+                        lexema = "";
+                    }
+                    else{
+                        Token t9 = new Token(TipoToken.EQUAL, lexema);
+                        tokens.add(t9);
+                        estado = 0;
+                        lexema = "";
+                        i--;
+                }
                 case 13:
                     if(Character.isLetterOrDigit(c)){
                         estado = 13;
