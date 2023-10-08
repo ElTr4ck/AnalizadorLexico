@@ -36,6 +36,7 @@ public class Scanner {
         int estado = 0;
         String lexema = "";
         char c;
+        int numLinea=0;
 
         for(int i=0; i<source.length(); i++){
             c = source.charAt(i);
@@ -187,6 +188,66 @@ public class Scanner {
                         estado = 0;
                         lexema = "";
                         i--;
+                    }
+                    break;
+
+
+                    case 18:
+                    if (c == '+' || c == '-') {
+                        // Se espera un signo, cambia al estado 19 y agrega el carácter al lexema
+                        estado = 19;
+                        lexema += c;
+                    } else if (Character.isDigit(c)) {
+                        // Se espera un dígito, cambia al estado 20 y agrega el carácter al lexema
+                        estado = 20;
+                        lexema += c;
+                    } else {
+                        // Error: Se esperaba un signo o un dígito
+                        Interprete.error(numLinea, "Se esperaba un signo o un digito");
+                    }
+                    break;
+
+                    case 19:
+                    if (Character.isDigit(c)) {
+                        // Continuación de un número después de un signo, cambia al estado 20 y agrega el carácter al lexema
+                        estado = 20;
+                        lexema += c;
+                    } else {
+                        // Error: Se esperaba un dígito
+                        Interprete.error(numLinea, "Se esperaba un digito");
+                    }
+                    break;
+
+                    case 20:
+                    if (Character.isDigit(c)) {
+                        // Parte principal de un número, agrega el carácter al lexema y continúa en el mismo estado
+                        estado = 20;
+                        lexema += c;
+                    } else {
+                        // Crear un token de tipo NUMBER, agregarlo a la lista de tokens y reiniciar el estado y el lexema
+                        Token t21 = new Token(TipoToken.NUMBER, lexema, Double.parseDouble(lexema));
+                        tokens.add(t21);
+                        estado = 0;
+                        lexema = "";
+                        i--;  // Retroceder el índice para analizar el siguiente carácter
+                    }
+                    break;
+                    
+                    case 24:
+                    if (c == '\n') {
+                        // Fin de línea, termina el análisis de la cadena
+                        i = source.length();
+                    } else if (c == '"') {
+                        // Fin de la cadena, crear un token de tipo STRING y reiniciar el estado y el lexema
+                        lexema += c;
+                        Token t25 = new Token(TipoToken.STRING, lexema, lexema.substring(1, lexema.length() - 1));
+                        tokens.add(t25);
+                        estado = 0;
+                        lexema = "";
+                    } else {
+                        // Continuación de la cadena, agrega el carácter al lexema y continúa en el mismo estado
+                        estado = 24;
+                        lexema += c;
                     }
                     break;
 
