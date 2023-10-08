@@ -43,27 +43,15 @@ public class Scanner {
             switch (estado){
                  case 0:
                     if (c == '>') {
-                        Token t = new Token(TipoToken.GREATER, lexema);
-                        tokens.add(t);
-                        lexema = "";
                         estado = 1;
                         lexema += c;
                     } else if (c == '<') {
-                        Token t = new Token(TipoToken.LESS, lexema);
-                        tokens.add(t);
-                        lexema = "";
                         estado = 4;
                         lexema += c;
                     } else if (c == '=') {
-                        Token t = new Token(TipoToken.EQUAL, lexema);
-                        tokens.add(t);
-                        lexema = "";
                         estado = 7;
                         lexema += c;
-                    } else if (c == '!') {
-                        Token t = new Token(TipoToken.BANG, lexema);
-                        tokens.add(t);
-                        lexema = "";
+                    } else if (c == '!') 
                         estado = 10;
                         lexema += c;
                     } else if (Character.isLetter(c)) {
