@@ -244,6 +244,127 @@ public class Scanner {
                         lexema += c;
                     }       
                 break;
+                case 33:
+                    if(c == '('){
+                        Token t = new Token(TipoToken.LEFT_PAREN, lexema);
+                        tokens.add(t);
+                        estado = 0;
+                        lexema += c;  
+                    }
+                    break;
+                case 34:
+                    if(c == ')'){
+                        Token t = new Token(TipoToken.RIGHT_PAREN, lexema);
+                        tokens.add(t);
+                        estado = 0;
+                        lexema += c;  
+                    }
+                    break;
+                 case 35:
+                    if(c == '{'){
+                        Token t = new Token(TipoToken.LEFT_BRACE, lexema);
+                        tokens.add(t);
+                        estado = 0;
+                        lexema += c;  
+                    }
+                    break;
+                case 36:
+                    if(c == '}'){
+                        Token t = new Token(TipoToken.RIGHT_BRACE, lexema);
+                        tokens.add(t);
+                        estado = 0;
+                        lexema += c;  
+                    }
+                    break;
+                case 37:
+                    if(c == ','){
+                        Token t = new Token(TipoToken.COMMA, lexema);
+                        tokens.add(t);
+                        estado = 0;
+                        lexema += c;  
+                    }
+                    break;
+                case 38:
+                    if(c == '.'){
+                        Token t = new Token(TipoToken.DOT, lexema);
+                        tokens.add(t);
+                        estado = 0;
+                        lexema += c;  
+                    }
+                    break;
+                    
+                 case 39:
+                    if(c == '-'){
+                        Token t = new Token(TipoToken.MINUS, lexema);
+                        tokens.add(t);
+                        estado = 0;
+                        lexema += c;  
+                    }
+                    break;
+                case 40:
+                    if(c == '+'){
+                        Token t = new Token(TipoToken.PLUS, lexema);
+                        tokens.add(t);
+                        estado = 0;
+                        lexema += c;  
+                    }
+                    break;
+                case 41:
+                    if(c == ';'){
+                        Token t = new Token(TipoToken.SEMICOLON, lexema);
+                        tokens.add(t);
+                        estado = 0;
+                        lexema += c;  
+                    }
+                    break;
+                case 42:
+                    if(c == '/'){
+                        Token t = new Token(TipoToken.SLASH, lexema);
+                        tokens.add(t);
+                        estado = 0;
+                        lexema += c;  
+                    }
+                    break;
+                case 43:
+                    if(c == '*'){
+                        Token t = new Token(TipoToken.STAR, lexema);
+                        tokens.add(t);
+                        estado = 0;
+                        lexema += c;  
+                    }
+                    break;
+                case 44:
+                    if(c == '!'){
+                        Token t = new Token(TipoToken.BANG, lexema);
+                        tokens.add(t);
+                        estado = 0;
+                        lexema += c;  
+                    }
+                    break;
+                case 45:
+                    if(c == '='){
+                        Token t = new Token(TipoToken.EQUAL, lexema);
+                        tokens.add(t);
+                        estado = 0;
+                        lexema += c;  
+                    }
+                    break;
+                case 46:
+                    if(c == '>'){
+                        Token t = new Token(TipoToken.GREATER, lexema);
+                        tokens.add(t);
+                        estado = 0;
+                        lexema += c;  
+                    }
+                    break;
+                case 47:
+                    if(c == '<'){
+                        Token t = new Token(TipoToken.LESS, lexema);
+                        tokens.add(t);
+                        estado = 0;
+                        lexema += c;  
+                    }
+                    break;
             }
 
 
