@@ -51,7 +51,7 @@ public class Scanner {
                     } else if (c == '=') {
                         estado = 7;
                         lexema += c;
-                    } else if (c == '!') 
+                    } else if (c == '!') {
                         estado = 10;
                         lexema += c;
                     } else if (Character.isLetter(c)) {
@@ -272,11 +272,8 @@ public class Scanner {
                     }       
                 break;
             }
-
-
         }
-
-
+    
         return tokens;
     }
 }
