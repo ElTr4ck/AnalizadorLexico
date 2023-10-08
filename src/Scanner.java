@@ -42,47 +42,74 @@ public class Scanner {
             c = source.charAt(i);
 
             switch (estado){
-                case 0:
-                    if(c == '>'){
+                 case 0:
+                    if (c == '>') {
                         estado = 1;
                         lexema += c;
-                    }
-                    else if(c == '<'){
+                    } else if (c == '<') {
                         estado = 4;
                         lexema += c;
-                    }
-                    else if(c == '='){
+                    } else if (c == '=') {
                         estado = 7;
                         lexema += c;
-                    }
-                    else if(c == '!'){
+                    } else if (c == '!') {
                         estado = 10;
                         lexema += c;
-                    }
-                    else if(Character.isLetter(c)){
+                    } else if (Character.isLetter(c)) {
                         estado = 13;
                         lexema += c;
-                    }
-                    else if(Character.isDigit(c)){
+                    } else if (Character.isDigit(c)) {
                         estado = 15;
                         lexema += c;
-                    
-                        /*while(Character.isDigit(c)){
-                            lexema += c;
-                            i++;
-                            c = source.charAt(i);
-                        }
-                        Token t = new Token(TipoToken.NUMBER, lexema, Integer.valueOf(lexema));
+                    } else if (c == '/') {
+                        estado = 26;
+                        lexema += c;
+                    } else if (c == '(') {
+                        Token t = new Token(TipoToken.LEFT_PAREN, String.valueOf(c));
+                        tokens.add(t);
                         lexema = "";
                         estado = 0;
+                    } else if (c == ')') {
+                        Token t = new Token(TipoToken.RIGHT_PAREN, String.valueOf(c));
                         tokens.add(t);
-                        */
-                        }
-                    else if(c == '/'){
-                        estado = 26;
-                        lexema +=c;
-                            }
-                    
+                        lexema = "";
+                        estado = 0;
+                    } else if (c == '{') {
+                        Token t = new Token(TipoToken.LEFT_BRACE, String.valueOf(c));
+                        tokens.add(t);
+                        lexema = "";
+                        estado = 0;
+                    } else if (c == '}') {
+                        Token t = new Token(TipoToken.RIGHT_BRACE, String.valueOf(c));
+                        tokens.add(t);
+                        lexema = "";
+                        estado = 0;
+                    } else if (c == ',') {
+                        Token t = new Token(TipoToken.COMMA, String.valueOf(c));
+                        tokens.add(t);
+                        lexema = "";
+                        estado = 0;
+                    } else if (c == '.') {
+                        Token t = new Token(TipoToken.DOT, String.valueOf(c));
+                        tokens.add(t);
+                        lexema = "";
+                        estado = 0;
+                    } else if (c == '-') {
+                        Token t = new Token(TipoToken.MINUS, String.valueOf(c));
+                        tokens.add(t);
+                        lexema = "";
+                        estado = 0;
+                    } else if (c == '+') {
+                        Token t = new Token(TipoToken.PLUS, String.valueOf(c));
+                        tokens.add(t);
+                        lexema = "";
+                        estado = 0;
+                    } else if (c == ';') {
+                        Token t = new Token(TipoToken.SEMICOLON, String.valueOf(c));
+                        tokens.add(t);
+                        lexema = "";
+                        estado = 0;
+                    }
                     break;
                 case 1:
                     if(c == '='){ //No se manda al estado 2 porque es un terminal
@@ -306,11 +333,8 @@ public class Scanner {
                     }       
                 break;
             }
-
-
         }
-
-
+    
         return tokens;
     }
 }
