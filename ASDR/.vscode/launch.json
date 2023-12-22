@@ -1,0 +1,23 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+    
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Analizador_Lexico",
+            "request": "launch",
+            "mainClass": "Analizador_Lexico",
+            "projectName": "ProyectoASDR_cb4dca86",
+            "args": ["C:/Users/Usuario/Desktop/Quinto semestre/Compiladores/SEGUNDO PARCIAL/ProyectoASDR/PruebasP2/Prueba6.txt"]
+        }
+    ]
+}
